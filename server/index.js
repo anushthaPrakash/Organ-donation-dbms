@@ -69,35 +69,43 @@ app.post('/signup',async(req,res)=>{
 
 app.post('/login', async (req, res) => {
   try {
-
-    const { username, password } = req.body;
-
-    const userType=req.body.in_user_type;
-    const user = await pool.query('SELECT * FROM Client WHERE User_Name = $1', [req.body.in_user_name]);
-
+    const {username,password}=req.body;
+    const user=await pool.query('SELECT * FROM Client WHERE User_Name = $1', [username]);
     if (user.rows.length === 0) {
       return res.status(401).json({ error: 'Invalid username or password' });
     }
 
-    // Compare the provided password with the hashed password from the database
-    // const passwordMatch = await bcrypt.compare(password, user.rows[0].password);
-
-    if (password!==user.rows[0].password) {
+    if(user.rows[0].password!==password){
       return res.status(401).json({ error: 'Invalid username or password' });
     }
-
-    const user1=await pool.query('SELECT User_ID FROM Login WHERE User_Name = $1', [username]);
-
-    // Password is correct, you can create a session or token for authentication
-
-    // Respond with a success message or token
-    res.status(200).send(user1.rows[0].User_ID);
-
+    res.status(200).send({
+      userType:user.rows[0].User_Type,
+      userId:user.rows[0].User_ID,
+      message:"Login Successful"
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+app.post("/approval",async(req,res)=>{
+  try {
+    const approved=req.body.approved;
+
+    const updated_query=await pool.query(
+      'UPDATE Pending_Approval SET approved=TRUE RETURNING *'
+    );
+
+    res.status(200).json({message:"Approval done successfully"});
+
+  } catch (error) {
+    console.log(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+
 
 //submission of a request
 app.post('/request',async(req,res)=>{
