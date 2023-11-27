@@ -11,13 +11,15 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 
+app.listen(3001, () => {
+    console.log(`Server is running on port 3001`);
+  });
+
 app.get('/', (req, res) => {
   res.send('Hello from DBMS!');
 });
 
-app.listen(3001, () => {
-  console.log(`Server is running on port 3001`);
-});
+
 
 // app.get('/home', (req, res) => {
 //   if (!req.session.login) {
