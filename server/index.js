@@ -60,7 +60,7 @@ app.post('/signup',async(req,res)=>{
     {
       return res.status(400).json({ error: 'Invalid user type' });
     }
-    res.status(201).json({ message: 'User created successfully', user: newUser.rows[0], });
+    res.status(201).json({ message: 'User created successfully', userType:user.rows[0].User_Type, userId:user.rows[0].User_ID});
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error"); 
