@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+<<<<<<< HEAD
 import axios from "axios";
 import { useContext } from "react";
 import { useAuth } from "../AuthContext";
@@ -142,10 +143,16 @@ function UserLogin({ type }) {
     }
   };
   
+=======
+
+function UserLogin({ type }) {
+  const [role, setRole] = useState("0");
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
 
   const handleRoleChange = (selectedRole) => {
     setRole(selectedRole);
   };
+<<<<<<< HEAD
   const handleUsernameChange = (e) => {
     // console.log("target val: ",e.target.value);
     // e.preventDefault();
@@ -170,6 +177,8 @@ function UserLogin({ type }) {
     setOrganisationID(e.target.value);
   };
 
+=======
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
   console.log(role);
 
   return (
@@ -194,6 +203,7 @@ function UserLogin({ type }) {
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+<<<<<<< HEAD
           <div className="p-2">
             <label
               for="email"
@@ -262,6 +272,72 @@ function UserLogin({ type }) {
               </button>
             )}
           </div>
+=======
+          <form class="space-y-6" action="#" method="POST">
+            <div>
+              <label
+                for="email"
+                class="block text-sm font-medium leading-6 text-gray-900"
+              >
+                User Name
+              </label>
+              <div class="mt-2">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between">
+                <label
+                  for="password"
+                  class="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Password
+                </label>
+                <div class="text-sm">
+                  <div class="font-semibold text-indigo-600 hover:text-indigo-500">
+                    Forgot password?
+                  </div>
+                </div>
+              </div>
+              <div class="mt-2">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  required
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+
+            <div>
+              {type === "1" ? (
+                <button
+                  type="submit"
+                  class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Sign in
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Sign Up
+                </button>
+              )}
+            </div>
+          </form>
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
         </div>
       </div>
 
@@ -275,7 +351,11 @@ function UserLogin({ type }) {
               <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
                 <div
                   className="flex items-center ps-3"
+<<<<<<< HEAD
                   onClick={() => handleRoleChange("D")}
+=======
+                  onClick={() => handleRoleChange("1")}
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
                 >
                   <input
                     id="horizontal-list-radio-license"
@@ -296,7 +376,11 @@ function UserLogin({ type }) {
               <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
                 <div
                   className="flex items-center ps-3"
+<<<<<<< HEAD
                   onClick={() => handleRoleChange("P")}
+=======
+                  onClick={() => handleRoleChange("2")}
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
                 >
                   <input
                     id="horizontal-list-radio-id"
@@ -317,7 +401,11 @@ function UserLogin({ type }) {
               <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
                 <div
                   className="flex items-center ps-3"
+<<<<<<< HEAD
                   onClick={() => handleRoleChange("O")}
+=======
+                  onClick={() => handleRoleChange("3")}
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
                 >
                   <input
                     id="horizontal-list-radio-military"
@@ -340,6 +428,7 @@ function UserLogin({ type }) {
           </div>
           {/* Role Form */}
           <div className="p-10">
+<<<<<<< HEAD
             <h3 className="mb-4 font-semibold text-lg text-gray-900 text-center">
               Fill the details
             </h3>
@@ -506,6 +595,161 @@ function UserLogin({ type }) {
             >
               Submit
             </button>
+=======
+            <form>
+              <h3 className="mb-4 font-semibold text-lg text-gray-900 text-center">
+                Fill the details
+              </h3>
+              <div class="grid gap-6 mb-6 md:grid-cols-2">
+                {role === "1" || role === "2" ? (
+                  <div>
+                    <label
+                      for="first_name"
+                      class="block mb-2 text-sm font-medium text-gray-900 "
+                    >
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="first_name"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      placeholder="Full Name"
+                      required
+                    />
+                  </div>
+                ) : (
+                  <div>
+                    <label
+                      for="first_name"
+                      class="block mb-2 text-sm font-medium text-gray-900 "
+                    >
+                      Oganisation Name
+                    </label>
+                    <input
+                      type="text"
+                      id="first_name"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      placeholder="Organisation Name"
+                      required
+                    />
+                  </div>
+                )}
+                <div>
+                  {role === "1" || role === "2" ? (
+                    <label
+                      for="last_name"
+                      class="block mb-2 text-sm font-medium text-gray-900 "
+                    >
+                      Blood Type
+                    </label>
+                  ) : (
+                    <label
+                      for="last_name"
+                      class="block mb-2 text-sm font-medium text-gray-900 "
+                    >
+                      Organisation Head
+                    </label>
+                  )}
+                  {role === "1" || role === "2" ? (
+                    <input
+                      type="text"
+                      id="last_name"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      placeholder="e.g : A"
+                      required
+                    />
+                  ) : (
+                    <input
+                      type="text"
+                      id="last_name"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      placeholder="Enter POC"
+                      required
+                    />
+                  )}
+                </div>
+                <div>
+                  <label
+                    for="company"
+                    class="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    id="company"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Full Address"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="phone"
+                    class="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Phone number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                    placeholder="123-45-678"
+                    pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                    required
+                  />
+                </div>
+              </div>
+
+              {role === "1" || role === "2" ? (
+                <div class="mb-6">
+                  <label
+                    for="text"
+                    class="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Organisation ID
+                  </label>
+                  <input
+                    type="text"
+                    id="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                    placeholder="Enter valid Organisation ID"
+                    required
+                  />
+                </div>
+              ) : (
+                <div></div>
+              )}
+
+              <div class="flex items-start mb-6">
+                <div class="flex items-center h-5">
+                  <input
+                    id="remember"
+                    type="checkbox"
+                    value=""
+                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 "
+                    required
+                  />
+                </div>
+                <label
+                  for="remember"
+                  class="ms-2 text-sm font-medium text-gray-900 "
+                >
+                  I agree with the{" "}
+                  <a href="#" class="text-blue-600 hover:underline ">
+                    terms and conditions
+                  </a>
+                  .
+                </label>
+              </div>
+              <button
+                type="submit"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center "
+              >
+                Submit
+              </button>
+            </form>
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
           </div>
         </div>
       ) : (

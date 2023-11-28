@@ -1,4 +1,5 @@
 import React from 'react'
+<<<<<<< HEAD
 import DonorNotifCard from '../Components/DonorNotifCard'
 
 function DonorNotif() {
@@ -20,6 +21,12 @@ function DonorNotif() {
   </div>
   
   </div>
+=======
+
+function DonorNotif() {
+  return (
+    <div>DonorNotif</div>
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
   )
 }
 

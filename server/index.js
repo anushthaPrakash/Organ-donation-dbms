@@ -24,8 +24,12 @@ app.get('/', (req, res) => {
 
 app.post('/signup',async(req,res)=>{
   const userType=req.body.in_user_type;
+<<<<<<< HEAD
   // console.log("user type from client: ",userType);
   // console.log(req.body);
+=======
+  console.log(req.body);
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
   try {
     // Check if the username is already taken
     const usernameCheck = await pool.query('SELECT * FROM Client WHERE User_Name = $1', [req.body.in_user_name]);
@@ -35,6 +39,7 @@ app.post('/signup',async(req,res)=>{
 
     // const hashedPassword = await bcrypt.hash(req.body.in_user_password,6);
     
+<<<<<<< HEAD
     // let newUser;
     if(userType==='P'){
       const {in_user_name,in_user_type,in_user_password,in_patient_name,in_phone_number,in_blood_type,in_patient_address,in_organization_id}=req.body;
@@ -63,14 +68,41 @@ app.post('/signup',async(req,res)=>{
       // console.log("user id from db: ", newUser.rows[0].new_organization_id);
       res.status(201).json({ message: 'Organisation created successfully', user_type:userType, userId:newUser.rows[0].new_organization_id});
       // res.status(201).json({ message: 'User created successfully'});
+=======
+    let newUser;
+    if(userType==='P'){
+      const {in_user_name,in_user_type,in_user_password,in_patient_name,in_phone_number,in_blood_type,in_patient_address,in_organization_id}=req.body;
+      newUser = await pool.query(
+        'SELECT insert_patient($1,$2,$3,$4,$5,$6,$7,$8) as new_patient_id',
+        [in_user_name,in_user_type,in_user_password,in_patient_name,in_phone_number,in_blood_type,in_patient_address,in_organization_id]
+      );
+    }
+    else if(userType==='D'){
+      const {in_user_name,in_user_type,in_user_password,in_donor_name,in_phone_number,in_blood_type,in_donor_address,in_organization_id}=req.body;
+      newUser = await pool.query(
+        'SELECT insert_donor($1,$2,$3,$4,$5,$6,$7,$8) as new_donor_id',
+        [in_user_name,in_user_type,in_user_password,in_donor_name,in_phone_number,in_blood_type,in_donor_address,in_organization_id]
+      );
+    }
+    else if(userType==='O'){
+      const {in_user_name,in_user_type,in_user_password,in_organization_name,in_organization_head,in_organization_address,in_phone_number}=req.body;
+      newUser = await pool.query(
+        'SELECT insert_organization($1,$2,$3,$4,$5,$6,$7) as new_organization_id',
+        [in_user_name,in_user_type,in_user_password,in_organization_name,in_organization_head,in_organization_address,in_phone_number]
+      );
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
     }
     else
     {
       return res.status(400).json({ error: 'Invalid user type' });
     }
+<<<<<<< HEAD
     
     
     
+=======
+    res.status(201).json({ message: 'User created successfully', userType:user.rows[0].User_Type, userId:user.rows[0].User_ID});
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error"); 
@@ -81,6 +113,7 @@ app.post('/login', async (req, res) => {
   try {
     const {username,password}=req.body;
     const user=await pool.query('SELECT * FROM Client WHERE User_Name = $1', [username]);
+<<<<<<< HEAD
 
     if (user.rows.length === 0) {
       return res.status(401).json({ error: 'Invalid username' });
@@ -97,6 +130,19 @@ app.post('/login', async (req, res) => {
       message:"Login Successful",
       userType:user.rows[0].user_type,
       userId:login.rows[0].user_id
+=======
+    if (user.rows.length === 0) {
+      return res.status(401).json({ error: 'Invalid username or password' });
+    }
+
+    if(user.rows[0].password!==password){
+      return res.status(401).json({ error: 'Invalid username or password' });
+    }
+    res.status(200).send({
+      userType:user.rows[0].User_Type,
+      userId:user.rows[0].User_ID,
+      message:"Login Successful"
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
     });
   } catch (error) {
     console.log(error);
@@ -104,6 +150,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 
 
 app.post('/getPendingApprovals', async (req, res) => {
@@ -140,6 +187,14 @@ app.post("/getPendingApprovals/:organizationId/approval",async(req,res)=>{
     const updated_query=await pool.query(
       'UPDATE Pending_Approval SET approved=TRUE WHERE Patient_ID=$1 AND Organ_Name=$2 AND Donor_ID=$3 RETURNING *',
       [patient_id,organ_name,dono_id]
+=======
+app.post("/approval",async(req,res)=>{
+  try {
+    const approved=req.body.approved;
+
+    const updated_query=await pool.query(
+      'UPDATE Pending_Approval SET approved=TRUE RETURNING *'
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
     );
 
     res.status(200).json({message:"Approval done successfully"});
@@ -151,6 +206,10 @@ app.post("/getPendingApprovals/:organizationId/approval",async(req,res)=>{
 });
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
 //submission of a request
 app.post('/request',async(req,res)=>{
   try {
@@ -180,6 +239,7 @@ app.post('/donation',async(req,res)=>{
 });
 
 
+<<<<<<< HEAD
 app.post('/donor-notif', async (req, res) => {
   try {
     const donorID = req.body.userID; // Assuming the attribute you send in the request is 'donorID'
@@ -220,9 +280,15 @@ app.post('/patient-notif', async (req, res) => {
   }
 });
 
+=======
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
 
 //logout if needed
 app.post('/logout', (req, res) => {
 
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
