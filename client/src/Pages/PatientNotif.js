@@ -1,5 +1,4 @@
 import React from 'react'
-<<<<<<< HEAD
 import PatientNotifCard from '../Components/PatientNotifCard'
 
 function PatientNotif() {
@@ -21,12 +20,6 @@ function PatientNotif() {
   </div>
   
   </div>
-=======
-
-function PatientNotif() {
-  return (
-    <div>PatientNotif</div>
->>>>>>> e60905c94988d94632c9fb42a02f5815923fbd89
   )
 }
 
