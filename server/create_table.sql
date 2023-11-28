@@ -150,7 +150,7 @@ CREATE OR REPLACE FUNCTION insert_donor(
     in_phone_number NUMERIC(10,0),
     in_blood_type CHAR(2),
     in_donor_address VARCHAR(50),
-     in_organization_id INTEGER -- New parameter for organization_id
+    in_organization_id INTEGER -- New parameter for organization_id
 )
 RETURNS INTEGER AS $$
 DECLARE
@@ -309,5 +309,3 @@ EXECUTE PROCEDURE after_donor_approval();
 
 -- SELECT * 
 -- FROM Donates;
-
-
